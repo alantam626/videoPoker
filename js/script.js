@@ -78,15 +78,15 @@ function holdCard(event) {
 }
 
 
-function winCondition() {
-    // const suits = ['s', 'c', 'd', 'h'];
-    // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']; 
+// function winCondition() {
+//     // const suits = ['s', 'c', 'd', 'h'];
+//     // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']; 
     
-    const straights = ['02', '03', '04', '05', '06']
+//     const straights = ['02', '03', '04', '05', '06']
 
-    if ()
-}
+//     if ()
+// }
 
-function pairJacksorHigher() {
+// function pairJacksorHigher() {
     
-} 
+// } 
