@@ -29,6 +29,7 @@ function shuffleDeck() {
 
     hand = shuffledDeck.slice(0,5)
     renderInHTML(hand, shuffledMainCards)
+    return hand
 }
 
 function renderInHTML(currentHand, shuffledMainCards) {
@@ -61,12 +62,23 @@ function holdCard(event) {
     const isCardHeld = heldCards.some(card => card.face === cardClass)
     if(isCardHeld) {
         // remove the card from the heldCards Array
-        // hints will need to use findIndex method to get idx
+        // will need to use findIndex method to get idx
         // use idx in .splice to actually remove
+        let unHeldCardIdx = heldCards.findIndex((card) => {heldCard})
+        heldCards.splice(unHeldCardIdx, 1)
         console.log('held, will be removed from heldCards array')
     } else {
         // add the card to the held cards array
-        // heldCards.push(heldCard)
-        console.log('push to heldCardss array')
+        heldCards.push(heldCard)
+        console.log('push to heldCards array')
     }
 }   
+
+// function winCondition() {
+//     // const suits = ['s', 'c', 'd', 'h'];
+//     // // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']; 
+//     // const pairJacksorHigher = [['J', 'J'], ['Q','Q'], ['K','K'], ['A','A']]
+//     // const straights = ['02', '03', '04', '05', '06']
+    
+//     if ()
+// }
