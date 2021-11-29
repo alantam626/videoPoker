@@ -61,7 +61,7 @@ function shuffleDeck() {
 
 function deal() {
         hand.forEach((card, idx) => { 
-            if ()
+            if (/* for each card in hand that is not already held*/)
             hand.splice(idx, 1, shuffledDeck.shift())
     })
     if (updateButton.innerText === 'Draw') {
