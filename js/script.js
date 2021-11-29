@@ -23,7 +23,6 @@ document.querySelector('Button').addEventListener('click', timesClickedFunction)
 document.getElementById('mainCards').addEventListener('click', holdCard);
 
 /*----- functions -----*/
-
 function timesClickedFunction() {
     timesClicked++;
 
@@ -62,7 +61,7 @@ function shuffleDeck() {
 
 function deal() {
         hand.forEach((card, idx) => { 
-            if (!heldCards.includes(card))
+            if ()
             hand.splice(idx, 1, shuffledDeck.shift())
     })
     if (updateButton.innerText === 'Draw') {
@@ -123,44 +122,44 @@ function holdCard(event) {
 }
 
 
-function winCondition() {
+// function winCondition() {
     // const suits = ['s', 'c', 'd', 'h'];
     // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']; 
 
-    const straights = ['02', '03', '04', '05', '06'];
-}
+//     const straights = ['02', '03', '04', '05', '06'];
+// }
 
 // tally cards in hand
-function pairJacksOrHigher() {
-    let numberOfJacks = 0;
-    let numberOfQueens = 0;
-    let numberOfKings = 0;
-    let numberOfAces = 0;
-    hand.forEach(playingCard => {
-        if (playingCard.face[1] === 'J') {
-            numberOfJacks++;
-        }
-    });
-    hand.forEach(playingCard => {
-        if (playingCard.face[1] === 'Q') {
-            numberOfQueens++;
-        }
-    });
-    hand.forEach(playingCard => {
-        if (playingCard.face[1] === 'K') {
-            numberOfKings++;
-        }
-    });
-    hand.forEach(playingCard => {
-        if (playingCard.face[1] === 'A') {
-            numberOfAces++;
-        }
-    });
-    if (numberOfJacks === 2 || numberOfQueens === 2 || numberOfKings === 2 || numberOfAces === 2) {
-        console.log('true');
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+// function pairJacksOrHigher() {
+//     let numberOfJacks = 0;
+//     let numberOfQueens = 0;
+//     let numberOfKings = 0;
+//     let numberOfAces = 0;
+//     hand.forEach(playingCard => {
+//         if (playingCard.face[1] === 'J') {
+//             numberOfJacks++;
+//         }
+//     });
+//     hand.forEach(playingCard => {
+//         if (playingCard.face[1] === 'Q') {
+//             numberOfQueens++;
+//         }
+//     });
+//     hand.forEach(playingCard => {
+//         if (playingCard.face[1] === 'K') {
+//             numberOfKings++;
+//         }
+//     });
+//     hand.forEach(playingCard => {
+//         if (playingCard.face[1] === 'A') {
+//             numberOfAces++;
+//         }
+//     });
+//     if (numberOfJacks === 2 || numberOfQueens === 2 || numberOfKings === 2 || numberOfAces === 2) {
+//         console.log('true');
+//         return true;
+//     }
+//     else {
+//         return false;
+//     }
+// }
