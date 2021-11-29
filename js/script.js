@@ -6,21 +6,36 @@ const masterDeck = buildMainDeck();
 
 // renderInHTML(masterDeck, document.getElementById('mainCards'))
 
+
 /*----- app's state (variables) -----*/
 let shuffledDeck = [];
 let hand;
 let heldCards = [];
 let balance = 0;
 
+let timesClicked = 0;
+
 /*----- cached element references -----*/
 const shuffledMainCards = document.getElementById('shuffledMainCards');
 
 /*----- event listeners -----*/
-document.querySelector('button').addEventListener('click', shuffleDeck);
+document.querySelector('Button').addEventListener('click', timesClickedFunction);
 document.getElementById('mainCards').addEventListener('click', holdCard);
-document.getElementById('Draw').addEventListener('click', deal);
 
 /*----- functions -----*/
+
+function timesClickedFunction() {
+    timesClicked++;
+
+    if (timesClicked % 2 == 0)
+    {
+        deal()
+    }
+    else {
+        shuffleDeck()
+    }
+
+}
 function shuffleDeck() {
     const tempDeck = [...masterDeck];
     shuffledDeck = [];
@@ -40,14 +55,25 @@ function shuffleDeck() {
         updateButton.setAttribute('id','Draw');
     }
 
-    hand = shuffledDeck.slice(0, 5);
+    hand = shuffledDeck.splice(0, 5);
     renderInHTML(hand, shuffledMainCards);
+    return shuffledDeck;
 }
 
 function deal() {
-    hand.face
-    
-}
+        hand.forEach((card, idx) => { 
+            if (!heldCards.includes(card))
+            hand.splice(idx, 1, shuffledDeck.shift())
+    })
+    if (updateButton.innerText === 'Draw') {
+        updateButton.innerText = 'Deal';
+        updateButton.setAttribute('id','Deal');
+    }
+    else {
+        updateButton.innerText = 'Draw';
+        updateButton.setAttribute('id','Draw');
+    }}
+
 
 function renderInHTML(currentHand, shuffledMainCards) {
     shuffledMainCards.innerHTML = '';
@@ -89,6 +115,7 @@ function holdCard(event) {
         } else {
             // add the card to the held cards array
             heldCards.push(heldCard);
+
             console.log('push to heldCards array');
         }
     }
