@@ -119,8 +119,6 @@ function holdCard(event) {
         }
     }
 
-<<<<<<< Updated upstream
-=======
 function winCondition() {
     handTally = hand.reduce((acc, card) => {
         const splitFace = card.face.split('')
@@ -141,7 +139,6 @@ function winCondition() {
     //     (handTally.J = 2) || (handTally.Q = 2) || (handTally.K = 2) || (handTally.A = 2)) { 
     //     balance = balance + 50;
     // };
->>>>>>> Stashed changes
 }
 
 
