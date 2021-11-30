@@ -4,19 +4,6 @@ const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const masterDeck = buildMainDeck();
 
-const winCombinations = {
-    // 'royalFlush': {
-    //     's': 5,
-    //     'c': 5,
-    //     'd': 5,
-    //     'h': 5,
-    //     '10': 1,
-    //     'J': 1,
-    //     'Q': 1,
-    //     'K': 1,
-    //     'A': 1,
-    // }
-}
 
 // renderInHTML(masterDeck, document.getElementById('mainCards'))
 
@@ -89,6 +76,8 @@ function deal() {
         updateButton.innerText = 'Draw';
         updateButton.setAttribute('id', 'Draw');
     }
+    balance = balance - 50;
+    console.log(balance)
     heldCards = []
     // refreshes held card array for next round
     winCondition()
@@ -136,8 +125,6 @@ function holdCard(event) {
         const cardClass = event.target.className;
         // use the card class to find the card object in our hand
         const heldCard = hand.find(card => cardClass.includes(card.face));
-        console.log(heldCards)
-        console.log(hand)
         // makes sure the card in hand has the correct object property for face
         const isCardHeld = heldCards.some(card => cardClass.includes(card.face));
         // returns true if the card is already in the held cards array
@@ -156,26 +143,26 @@ function holdCard(event) {
 
 
 function winCondition() {
+    console.log('win condition is running')
     handTally = hand.reduce((acc, card) => {
-        const splitFace = card.face.split('')
-        const suit = splitFace.splice(0, 1).join('')
-        const ranking = splitFace.join('')
+        const splitFace = card.face.split('');
+        const suit = splitFace.splice(0, 1).join('');
+        const ranking = splitFace.join('');
 
         acc[suit] = acc[suit] ? acc[suit] + 1 : 1;
         acc[ranking] = acc[ranking] ? acc[ranking] + 1 : 1;
-        return acc
+        return acc;
     }, {});
     
-    const flush = isFlush(handTally)
+    const flush = isFlush(handTally);
     console.log('Is it a flush? ', flush)
 
-    isPair(handTally)
-    let three = isThreeOfaKind(handTally)
+    isPair(handTally);
+    let three = isThreeOfaKind(handTally);
     console.log(`Is this three of a kind? ${three}`)
-    let four  = isFourOfaKind(handTally)
+    let four  = isFourOfaKind(handTally);
     console.log(`Is this four of a kind? ${four}`)
-
-
+    let full = isFullHouse(handTally);
 
     return handTally;    
 }
@@ -186,39 +173,54 @@ function isFlush(handTally) {
 
 function isPair(handTally) {
     let numOfPairs = 0;
+    let onePair = false;
     ranks.forEach(rank => {
+
         if(handTally[rank] === 2) {
             numOfPairs++;
         }
     })
     if (numOfPairs > 1) {
+        console.log('you got two pairs')
         balance = balance + 100;
     }
-    else if (numOfPairs = 1) {
+    else if (numOfPairs === 1) {
+        console.log('you got one pair')
         balance = balance + 50;
     }
+    return onePair;
 }
 
 function isThreeOfaKind(handTally) {
-    let threeOfaKind = false
+    let threeOfaKind = false;
     ranks.forEach(rank => {
         if(handTally[rank] === 3) {
-            threeOfaKind = true
+            threeOfaKind = true;
         }
     })
-    return threeOfaKind
+    return threeOfaKind;
 }
 
 function isFourOfaKind(handTally) {
-    let fourOfaKind = false
+    let fourOfaKind = false;
     ranks.forEach(rank => {
         if(handTally[rank] === 4) {
-            fourOfaKind = true
+            fourOfaKind = true;
         }
     })
-    return fourOfaKind
+    return fourOfaKind;
 }
 
-function isStraight(handTally) {
-    let straight = false;
+// function isStraight(handTally) {
+//     let straight = false;
+// }
+
+function isFullHouse(handTally) {
+    let fullHouse = false;
+    if(isThreeOfaKind === true && isPair === true)
+    {
+        fullHouse = true;
+    }
+    return fullHouse;
 }
+
