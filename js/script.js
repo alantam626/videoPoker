@@ -152,7 +152,6 @@ function holdCard(event) {
             heldCards.push(heldCard);
         }
     }
-<<<<<<< HEAD
 }
 
 
@@ -167,78 +166,59 @@ function winCondition() {
         return acc
     }, {});
     
-    return handTally
-    
+    const flush = isFlush(handTally)
+    console.log('Is it a flush? ', flush)
+
+    isPair(handTally)
+    let three = isThreeOfaKind(handTally)
+    console.log(`Is this three of a kind? ${three}`)
+    let four  = isFourOfaKind(handTally)
+    console.log(`Is this four of a kind? ${four}`)
+
+
+
+    return handTally;    
 }
 
-function isFlush() {
-    suits.every
-}
-=======
-    renderInHTML()
+function isFlush(handTally) {
+    return suits.every(suit => handTally[suit] === 5 || !handTally[suit])
 }
 
-
-function winCondition() {
-    handTally = hand.reduce((acc, card) => {
-        const splitFace = card.face.split('')
-        const suit = splitFace.splice(0, 1).join('')
-        const ranking = splitFace.join('')
-
-        acc[suit] = acc[suit] ? acc[suit] + 1 : 1;
-        acc[ranking] = acc[ranking] ? acc[ranking] + 1 : 1;
-        return acc
-    }, {});
-    
-    return handTally
-    // pairs
-    // if (handTally.Number(02) = 2 || (handTally.Number(03) = 2) || (handTally.Number(04) = 2) ||
-    //     (handTally.Number(05) = 2) || (handTally.Number(06) = 2) || (handTally.Number(07) = 2) ||
-    //     (handTally.Number(08) = 2) || (handTally.Number(09) = 2) || (handTally.Number(10) = 2) ||
-    //     (handTally.J = 2) || (handTally.Q = 2) || (handTally.K = 2) || (handTally.A = 2)) { 
-    //     balance = balance + 50;
-    // };
+function isPair(handTally) {
+    let numOfPairs = 0;
+    ranks.forEach(rank => {
+        if(handTally[rank] === 2) {
+            numOfPairs++;
+        }
+    })
+    if (numOfPairs > 1) {
+        balance = balance + 100;
+    }
+    else if (numOfPairs = 1) {
+        balance = balance + 50;
+    }
 }
 
+function isThreeOfaKind(handTally) {
+    let threeOfaKind = false
+    ranks.forEach(rank => {
+        if(handTally[rank] === 3) {
+            threeOfaKind = true
+        }
+    })
+    return threeOfaKind
+}
 
-    // const suits = ['s', 'c', 'd', 'h'];
-    // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']; 
+function isFourOfaKind(handTally) {
+    let fourOfaKind = false
+    ranks.forEach(rank => {
+        if(handTally[rank] === 4) {
+            fourOfaKind = true
+        }
+    })
+    return fourOfaKind
+}
 
-//     const straights = ['02', '03', '04', '05', '06'];
-// }
-
-// tally cards in hand
-// function pairJacksOrHigher() {
-//     let numberOfJacks = 0;
-//     let numberOfQueens = 0;
-//     let numberOfKings = 0;
-//     let numberOfAces = 0;
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'J') {
-//             numberOfJacks++;
-//         }
-//     });
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'Q') {
-//             numberOfQueens++;
-//         }
-//     });
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'K') {
-//             numberOfKings++;
-//         }
-//     });
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'A') {
-//             numberOfAces++;
-//         }
-//     });
-//     if (numberOfJacks === 2 || numberOfQueens === 2 || numberOfKings === 2 || numberOfAces === 2) {
-//         console.log('true');
-//         return true;
-//     }
-//     else {
-//         return false;
-//     }
-// }
->>>>>>> gh-pages
+function isStraight(handTally) {
+    let straight = false;
+}
