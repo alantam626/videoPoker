@@ -118,6 +118,8 @@ function holdCard(event) {
             console.log('push to heldCards array');
         }
     }
+}
+
 
 function winCondition() {
     handTally = hand.reduce((acc, card) => {
@@ -131,55 +133,9 @@ function winCondition() {
     }, {});
     
     return handTally
-    // pairs
-    // const isPair = isThereAPair()
-    // if (handTally.Number(02) = 2 || (handTally.Number(03) = 2) || (handTally.Number(04) = 2) ||
-    //     (handTally.Number(05) = 2) || (handTally.Number(06) = 2) || (handTally.Number(07) = 2) ||
-    //     (handTally.Number(08) = 2) || (handTally.Number(09) = 2) || (handTally.Number(10) = 2) ||
-    //     (handTally.J = 2) || (handTally.Q = 2) || (handTally.K = 2) || (handTally.A = 2)) { 
-    //     balance = balance + 50;
-    // };
+    
 }
 
-
-// function winCondition() {
-    // const suits = ['s', 'c', 'd', 'h'];
-    // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']; 
-
-//     const straights = ['02', '03', '04', '05', '06'];
-// }
-
-// tally cards in hand
-// function pairJacksOrHigher() {
-//     let numberOfJacks = 0;
-//     let numberOfQueens = 0;
-//     let numberOfKings = 0;
-//     let numberOfAces = 0;
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'J') {
-//             numberOfJacks++;
-//         }
-//     });
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'Q') {
-//             numberOfQueens++;
-//         }
-//     });
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'K') {
-//             numberOfKings++;
-//         }
-//     });
-//     hand.forEach(playingCard => {
-//         if (playingCard.face[1] === 'A') {
-//             numberOfAces++;
-//         }
-//     });
-//     if (numberOfJacks === 2 || numberOfQueens === 2 || numberOfKings === 2 || numberOfAces === 2) {
-//         console.log('true');
-//         return true;
-//     }
-//     else {
-//         return false;
-//     }
-// }
+function isFlush() {
+    suits.every
+}
