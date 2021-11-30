@@ -119,6 +119,29 @@ function holdCard(event) {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+function winCondition() {
+    handTally = hand.reduce((acc, card) => {
+        const splitFace = card.face.split('')
+        const suit = splitFace.splice(0, 1).join('')
+        const ranking = splitFace.join('')
+
+        acc[suit] = acc[suit] ? acc[suit] + 1 : 1;
+        acc[ranking] = acc[ranking] ? acc[ranking] + 1 : 1;
+        return acc
+    }, {});
+    
+    return handTally
+    // pairs
+    // const isPair = isThereAPair()
+    // if (handTally.Number(02) = 2 || (handTally.Number(03) = 2) || (handTally.Number(04) = 2) ||
+    //     (handTally.Number(05) = 2) || (handTally.Number(06) = 2) || (handTally.Number(07) = 2) ||
+    //     (handTally.Number(08) = 2) || (handTally.Number(09) = 2) || (handTally.Number(10) = 2) ||
+    //     (handTally.J = 2) || (handTally.Q = 2) || (handTally.K = 2) || (handTally.A = 2)) { 
+    //     balance = balance + 50;
+    // };
+>>>>>>> Stashed changes
 }
 
 
