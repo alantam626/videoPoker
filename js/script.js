@@ -4,10 +4,6 @@ const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const masterDeck = buildMainDeck();
 
-
-// renderInHTML(masterDeck, document.getElementById('mainCards'))
-
-
 /*----- app's state (variables) -----*/
 let shuffledDeck = [];
 let hand;
@@ -16,16 +12,17 @@ let balance = 1000;
 let handTally;
 let timesClicked = 0;
 
-
 /*----- cached element references -----*/
 const shuffledMainCards = document.getElementById('shuffledMainCards');
 let container = document.getElementById('mainCards')
+let totalBalance = document.getElementById('balance')
 
 /*----- event listeners -----*/
 document.querySelector('Button').addEventListener('click', timesClickedFunction);
 document.getElementById('mainCards').addEventListener('click', holdCard);
 
 /*----- functions -----*/
+
 function timesClickedFunction() {
     timesClicked++;
 
@@ -90,21 +87,25 @@ function renderInHTML() {
     // clears out the previous cards to start fresh
     // All your render function needs to do is check the app's state for anything that will show up on screen,
     // and render the appropriate information to the DOM
+    if (balance <= 0) {
+        totalBalance.innerHTML = 'GAME OVER'
+        return
+    }
     hand.forEach(card => {
         const cardEl = document.createElement('div')
         cardEl.setAttribute('id', `cardslot${hand.indexOf(card)}`)
         cardEl.setAttribute('class', `card ${card.face}`)
-        if (heldCards.some(heldCard => card.face === heldCard.face)) {
+        if (heldCards.some(heldCard => card.face === heldCard.face) && updateButton.innerText === 'Deal') {
             cardEl.classList.add('hold')
-            console.log("hold firing in conditional")
         }
         // goes through each card in hand and updates the DOM to show the up to date card
         // adds held card css class to cards that are clicked 
-
         container.append(cardEl)
 
+        totalBalance.innerText = `Balance: ${balance}`;
     })
-}
+    }
+
 
 function buildMainDeck() {
     const mainDeck = [];
@@ -135,7 +136,7 @@ function holdCard(event) {
             // use idx in .splice to actually remove
             let unHeldCardIdx = heldCards.findIndex(card => card.face === heldCard.face);
             heldCards.splice(unHeldCardIdx, 1);
-        
+
         } else {
             // add the card to the held cards array
             heldCards.push(heldCard);
@@ -146,7 +147,6 @@ function holdCard(event) {
 
 
 function winCondition() {
-    console.log('win condition is running')
     handTally = hand.reduce((acc, card) => {
         const splitFace = card.face.split('');
         const suit = splitFace.splice(0, 1).join('');
@@ -156,20 +156,31 @@ function winCondition() {
         acc[ranking] = acc[ranking] ? acc[ranking] + 1 : 1;
         return acc;
     }, {});
-    
+
+
     const flush = isFlush(handTally);
     console.log('Is it a flush? ', flush)
 
     isPair(handTally);
+
     let three = isThreeOfaKind(handTally);
     console.log(`Is this three of a kind? ${three}`)
-    let four  = isFourOfaKind(handTally);
+
+    let four = isFourOfaKind(handTally);
     console.log(`Is this four of a kind? ${four}`)
+
     let full = isFullHouse(handTally);
 
     let straight = isStraight(handTally)
     console.log(`Is this a straight? ${straight}`)
-    return handTally;    
+
+    let straightFlush = isStraightFlush(handTally)
+    console.log(`Is this a straight flush? ${straightFlush}`)
+
+    let royalFlush = isRoyalFlush(handTally)
+    console.log(`Is this a royal flush? ${royalFlush}`)
+
+    return handTally;
 }
 
 function isFlush(handTally) {
@@ -181,7 +192,7 @@ function isPair(handTally) {
     let onePair = false;
     ranks.forEach(rank => {
 
-        if(handTally[rank] === 2) {
+        if (handTally[rank] === 2) {
             numOfPairs++;
         }
     })
@@ -199,8 +210,9 @@ function isPair(handTally) {
 function isThreeOfaKind(handTally) {
     let threeOfaKind = false;
     ranks.forEach(rank => {
-        if(handTally[rank] === 3) {
+        if (handTally[rank] === 3) {
             threeOfaKind = true;
+            balance = balance + 150;
         }
     })
     return threeOfaKind;
@@ -209,8 +221,9 @@ function isThreeOfaKind(handTally) {
 function isFourOfaKind(handTally) {
     let fourOfaKind = false;
     ranks.forEach(rank => {
-        if(handTally[rank] === 4) {
+        if (handTally[rank] === 4) {
             fourOfaKind = true;
+            balance = balance + 1250;
         }
     })
     return fourOfaKind;
@@ -219,32 +232,58 @@ function isFourOfaKind(handTally) {
 function isStraight(handTally) {
     let straight = false;
     let counter = 0
-    for (let i = 0; i < 8; i++)
-    {
-        for( let j = i; j < i + 5; j++)
-        {
-            if(!handTally[ranks[j]]) {
+    for (let i = 0; i < 8; i++) {
+        for (let j = i; j < i + 5; j++) {
+            if (!handTally[ranks[j]]) {
                 counter = 0;
                 break
             } else {
                 counter++
             }
         }
-        if(counter === 5)
-        {
+        if (counter === 5) {
             straight = true;
+            balance = balance + 200;
             break
         }
     }
     return straight;
+
+
 }
 
 function isFullHouse(handTally) {
     let fullHouse = false;
-    if(isThreeOfaKind === true && isPair === true)
-    {
+    if (isThreeOfaKind === true && isPair === true) {
         fullHouse = true;
+        balance = balance + 450;
     }
     return fullHouse;
 }
 
+function isStraightFlush(handTally) {
+    let straightFlush = false;
+    if (isStraight === true && isFlush === true) {
+        straightFlush = true;
+        balance = balance + 2500;
+    }
+    return straightFlush;
+}
+
+function isRoyalFlush(handTally) {
+    let royalFlush = false;
+    royalCounter = 0;
+    for (let i = 9; i < 15; i++) {
+        if (!handTally[ranks[i]]) {
+            royalCounter = 0;
+        }
+        else {
+            royalCounter++
+        }
+    }
+    if (royalCounter === 5) {
+        royalFlush = true;
+        balance = balance + 12500;
+    }
+    return royalFlush;
+}
