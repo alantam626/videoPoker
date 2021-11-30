@@ -96,6 +96,7 @@ function renderInHTML() {
         cardEl.setAttribute('class', `card ${card.face}`)
         if (heldCards.some(heldCard => card.face === heldCard.face)) {
             cardEl.classList.add('hold')
+            console.log("hold firing in conditional")
         }
         // goes through each card in hand and updates the DOM to show the up to date card
         // adds held card css class to cards that are clicked 
@@ -134,11 +135,13 @@ function holdCard(event) {
             // use idx in .splice to actually remove
             let unHeldCardIdx = heldCards.findIndex(card => card.face === heldCard.face);
             heldCards.splice(unHeldCardIdx, 1);
+        
         } else {
             // add the card to the held cards array
             heldCards.push(heldCard);
         }
     }
+    renderInHTML()
 }
 
 
@@ -164,6 +167,8 @@ function winCondition() {
     console.log(`Is this four of a kind? ${four}`)
     let full = isFullHouse(handTally);
 
+    let straight = isStraight(handTally)
+    console.log(`Is this a straight? ${straight}`)
     return handTally;    
 }
 
@@ -211,9 +216,28 @@ function isFourOfaKind(handTally) {
     return fourOfaKind;
 }
 
-// function isStraight(handTally) {
-//     let straight = false;
-// }
+function isStraight(handTally) {
+    let straight = false;
+    let counter = 0
+    for (let i = 0; i < 8; i++)
+    {
+        for( let j = i; j < i + 5; j++)
+        {
+            if(!handTally[ranks[j]]) {
+                counter = 0;
+                break
+            } else {
+                counter++
+            }
+        }
+        if(counter === 5)
+        {
+            straight = true;
+            break
+        }
+    }
+    return straight;
+}
 
 function isFullHouse(handTally) {
     let fullHouse = false;

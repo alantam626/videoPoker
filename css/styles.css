@@ -9,3 +9,10 @@ button {
 .hold {
     border: solid 2px orange;
 }
+
+#infocontainer {
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+}
