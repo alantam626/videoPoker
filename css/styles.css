@@ -6,6 +6,6 @@ button {
     padding: 10px;  
 }
 
-hold {
-    
+.hold {
+    border: solid 2px orange;
 }
