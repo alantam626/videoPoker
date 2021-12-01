@@ -2,7 +2,7 @@
 
 Video Poker is an variant of the free game Jacks or Better available on [Vegas Slots Online](https://www.vegasslotsonline.com/video-poker/jacks-or-better/).
 
-The interface is designed to be very simple to use, with only one button to simulate the dealing of the hands and the option to click on each individual card during the initial to keep / hold them for the final draw. 
+The interface is designed to be very simple to use, with only one button to simulate the dealing of the hands and the option to click on each individual card during the initial drawa to keep / hold them for the final draw. 
 
 ## Screenshots
 
