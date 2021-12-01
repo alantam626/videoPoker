@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    border-style: solid;
 }
 
 button {
@@ -9,7 +10,7 @@ button {
 }
 
 .hold {
-    border: solid 2px orange;
+    border: solid 3px red;
 }
 
 #infocontainer {
@@ -27,6 +28,10 @@ align-items: center;
 #mainCards {
     display: flex;
     justify-content: center;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    
 }
 
 #balance {
@@ -39,5 +44,23 @@ button {
 }
 
 #infobox {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+#instruction {
+    border: 2px;
+    border-style: solid;
+
+}
+
+#payout {
+    border: 2px;
+    border-style: solid;
+}
+
+#message { 
     text-align: center;
 }
