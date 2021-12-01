@@ -16,13 +16,13 @@ let timesClicked = 0;
 const shuffledMainCards = document.getElementById('shuffledMainCards');
 let container = document.getElementById('mainCards')
 let totalBalance = document.getElementById('balance')
+let message = document.getElementById('message')
 
 /*----- event listeners -----*/
 document.querySelector('Button').addEventListener('click', timesClickedFunction);
 document.getElementById('mainCards').addEventListener('click', holdCard);
 
 /*----- functions -----*/
-
 function timesClickedFunction() {
     timesClicked++;
 
@@ -88,6 +88,7 @@ function renderInHTML() {
     // All your render function needs to do is check the app's state for anything that will show up on screen,
     // and render the appropriate information to the DOM
     if (balance <= 0) {
+        message.innerText = ''
         totalBalance.innerHTML = 'GAME OVER'
         return
     }
@@ -159,26 +160,28 @@ function winCondition() {
 
 
     const flush = isFlush(handTally);
-    console.log('Is it a flush? ', flush)
 
-    isPair(handTally);
+    let pairs = isPair(handTally);
 
     let three = isThreeOfaKind(handTally);
-    console.log(`Is this three of a kind? ${three}`)
 
     let four = isFourOfaKind(handTally);
-    console.log(`Is this four of a kind? ${four}`)
 
     let full = isFullHouse(handTally);
 
     let straight = isStraight(handTally)
-    console.log(`Is this a straight? ${straight}`)
 
     let straightFlush = isStraightFlush(handTally)
-    console.log(`Is this a straight flush? ${straightFlush}`)
 
     let royalFlush = isRoyalFlush(handTally)
-    console.log(`Is this a royal flush? ${royalFlush}`)
+
+    if (balance <= 0) {
+        totalBalance.innerHTML = 'GAME OVER'
+        message.innerText = ''
+        return
+    }
+
+    message.innerText = `Royal Flush: ${royalFlush}\n Straight: ${straight}\n Straight Flush: ${straightFlush}\n  Full House: ${full}\n Four of a Kind: ${four}\n Flush: ${flush}\n Three of a Kind: ${three}\n Pair(s): ${pairs}\n`
 
     return handTally;
 }
@@ -189,7 +192,6 @@ function isFlush(handTally) {
 
 function isPair(handTally) {
     let numOfPairs = 0;
-    let onePair = false;
     ranks.forEach(rank => {
 
         if (handTally[rank] === 2) {
@@ -204,7 +206,7 @@ function isPair(handTally) {
         console.log('you got one pair')
         balance = balance + 50;
     }
-    return onePair;
+    return numOfPairs;
 }
 
 function isThreeOfaKind(handTally) {
