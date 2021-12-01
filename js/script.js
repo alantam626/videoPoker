@@ -38,6 +38,7 @@ function timesClickedFunction() {
 function shuffleDeck() {
     const tempDeck = [...masterDeck];
     shuffledDeck = [];
+    balance = balance - 50;
     updateButton = document.querySelector('button');
 
     while (tempDeck.length) {
@@ -73,7 +74,6 @@ function deal() {
         updateButton.innerText = 'Draw';
         updateButton.setAttribute('id', 'Draw');
     }
-    balance = balance - 50;
     console.log(balance)
     heldCards = []
     // refreshes held card array for next round
