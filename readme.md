@@ -8,7 +8,7 @@ The interface is designed to be very simple to use, with only one button to simu
 
 ![image](https://user-images.githubusercontent.com/69663479/144273508-be9bfa80-29e1-4744-8647-a42147ee5d1c.png)
 
-![image](https://user-images.githubusercontent.com/69663479/144274650-3f1903e4-cc39-45fc-aedb-419af9f46bc2.png)
+![image](https://user-images.githubusercontent.com/69663479/144275113-8686e833-a122-497a-a929-7898d9873d0d.png)
 
 ![image](https://user-images.githubusercontent.com/69663479/144275027-e27c0c60-efe5-4766-b5c6-ca1e26e8d317.png)
 
