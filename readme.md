@@ -6,6 +6,7 @@ The interface is designed to be very simple to use, with only one button to simu
 
 ## Screenshots
 
+
 ## Technologies Used
 
 Video Poker was created with Javascript, HTML and CSS. Visual Studio code was used as the IDE. Git/Github was used as the version control system. Deployed with Github Pages.
