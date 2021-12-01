@@ -96,7 +96,7 @@ function renderInHTML() {
         const cardEl = document.createElement('div')
         cardEl.setAttribute('id', `cardslot${hand.indexOf(card)}`)
         cardEl.setAttribute('class', `card ${card.face}`)
-        if (heldCards.some(heldCard => card.face === heldCard.face) && updateButton.innerText === 'Deal') {
+        if (heldCards.some(heldCard => card.face === heldCard.face) && updateButton.innerText === 'Draw') {
             cardEl.classList.add('hold')
         }
         // goes through each card in hand and updates the DOM to show the up to date card
